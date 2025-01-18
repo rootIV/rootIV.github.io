@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Not Bets - Vença o vício</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
+    />
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const saibaMaisButton = document.getElementById('know-more');
+        const targetSection = document.getElementById('features');
+        const countdownElement = document.getElementById('countdown');
+
+        function getEndOfDay() {
+          const now = new Date();
+          const endOfDay = new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            now.getDate(),
+            23,
+            59,
+            59,
+            999
+          );
+          return endOfDay.getTime();
+        }
+
+        function updateCountdown() {
+          const now = new Date().getTime();
+          const timeLeft = getEndOfDay() - now;
+
+          const hours = Math.floor(
+            (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (timeLeft % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+          countdownElement.innerHTML = `Promoção por tempo limitado: ${hours}h ${minutes}m ${seconds}s`;
+
+          if (timeLeft < 0) {
+            clearInterval(countdownInterval);
+            countdownElement.innerHTML = 'Promoção Encerrada!';
+          }
+        }
+
+        saibaMaisButton.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetSection = document.getElementById('features');
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        AOS.init();
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav>
+          <span class="logo-img"></span>
+          <div id="countdown" class="countdown-timer"></div>
+          <a
+            href="https://checkout.perfectpay.com.br/pay/PPU38CP2DEM"
+            class="cta-button hvr-shadow-grow"
+            target="_blank"
+            >Compre Agora</a
+          >
+        </nav>
+      </div>
+    </header>
+    <!-- Hero -->
+    <section class="hero" id="cta">
+      <div class="container">
+        <h1>Está difícil parar de jogar e você sente que não consegue mais?</h1>
+        <p>
+          Se a sua vontade é acabar com isso de uma vez por todas, hoje pode ser
+          o dia da mudança.
+        </p>
+        <br />
+        <a href="#" class="cta-button" id="know-more">Saiba Mais!</a>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="container">
+        <h2>Busque ajuda</h2>
+        <p>
+          <span></span>Não existe mágica para superar o vício em jogos, mas
+          existe <span style="color: red">TRATAMENTO</span>, e ele começa com a
+          sua decisão de buscar ajuda.<br /><br />
+          Aqui, você terá acesso ao
+          <span style="color: red">MELHOR</span> conteúdo disponível para vencer
+          esse vício, mas antes de prosseguir, preciso ser bem claro.<br /><br />
+          Se você acha que vai conseguir parar sozinho, sem qualquer orientação,
+          ou que investir apenas vinte e nove reais em algo criado com estudo e
+          dedicação para te ajudar é muito, então talvez este não seja o lugar
+          para você. Volte para sua casa de apostas preferida e continue
+          gastando, pois com essa mentalidade, é provável que você nunca pare de
+          jogar.<br />
+          <br />
+          Estamos aqui para quem está realmente comprometido em se
+          <span style="color: red">LIBERTAR</span>
+          desse ciclo e <span style="color: red">RECUPERAR O CONTROLE</span> da
+          sua vida. Desculpe a sinceridade, mas a situação é grave. Muitas
+          pessoas estão perdendo suas vidas por causa do vício em jogos, e este
+          não é um espaço para brincadeiras. Se você está pronto para encarar a
+          realidade e mudar, vamos seguir em frente.
+        </p>
+        <br /><br />
+        <a
+          href="https://checkout.perfectpay.com.br/pay/PPU38CP2DEM"
+          class="cta-button hvr-shadow-grow"
+          target="_blank"
+          >Compre Agora</a
+        >
+        <br /><br /><br />
+
+        <section class="video-section">
+          <div class="container">
+            <h2>Perceba como você é enganado:</h2>
+            <div class="video-container">
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/OJyQ3_Tdp3M"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+          </div>
+        </section>
+
+        <br /><br />
+        <h2>Depoimentos:</h2>
+        <div class="feature-grid">
+          <div
+            class="feature-item"
+            data-aos="flip-left"
+            data-aos-duration="1000"
+          >
+            <h3>Rafael Fernando</h3>
+            <p>
+              "Você salvou minha vida cara, estou escrevendo isso com lágrimas
+              nos olhos. Obrigado, obrigado, obrigado..."
+            </p>
+          </div>
+          <div
+            class="feature-item"
+            data-aos="flip-left"
+            data-aos-duration="1000"
+          >
+            <h3>Sabrina Paiva</h3>
+            <p>
+              "Devia R$ 20.000,00 e, graças ao método, com muita alegria venho
+              dizer que já quitei minha dívida."
+            </p>
+          </div>
+          <div
+            class="feature-item"
+            data-aos="flip-left"
+            data-aos-duration="1000"
+          >
+            <h3>Lucas Augusto</h3>
+            <p>
+              "128 dias sem jogar e contando, sei que é só o começo, mas deixo
+              aqui minha gratidão, hoje sou outra pessoa."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <div style="background-color: black">
+        <span style="color: white"
+          >🥇 1° GRUPO VIP DO BRASIL ESPECIALIZADO EM AUTO AJUDA PARA SE LIVRAR
+          DO VICIO NAS APOSTAS ESPORTIVAS E JOGOS DE AZAR <br />
+          📕 EBOOK SE LIVRE DO VICIO EM JOGOS EM 14 DIAS <br />
+          📣 COMUNIDADE EXCLUSIVA <br />
+          🤗 CHAT DE INTERAÇÃO COM OUTROS JOGADORES <br />
+          💬 SUPORTE INDIVIDUAL DE AUTO-AJUDA</span
+        >
+      </div>
+      <br />
+      <a
+        href="https://checkout.perfectpay.com.br/pay/PPU38CP2DEM"
+        class="cta-button"
+        target="_blank"
+        >Compre Agora</a
+      >
+    </section>
+
+    <section class="image-section"></section>
+
+    <section class="features" id="features">
+      <div class="container">
+        <p>
+          E se eu te dissesse que você pode ter acesso ao material mais completo
+          do mercado,<br />
+          que visa a sua recuperação, por menos de
+          <span style="color: red">R$ 29,90</span> pago uma única vez?
+          <br /><br />
+          Você pode estar se perguntando: “Se é tão bom, por que é tão
+          barato?”<br /><br />
+          A resposta é simples: Não estamos aqui para lucrar; estamos aqui para
+          salvar vidas.<br />
+        </p>
+
+        <span class="stamp-section" data-aos="zoom-in"> </span>
+
+        <p style="background-color: black; color: white">
+          SUA PAZ DE VOLTA POR MENOS DE R$ 1 POR DIA. <br />RECAÍDAS,
+          NERVOSISMO, FALTA DE DINHEIRO, MENTIRAS, PSICOLÓGICO ABALADO, PERDAS
+          INCESSANTES? ESSES SÃO ALGUNS SINTOMAS DE QUE O VÍCIO JÁ DOMINOU SUA
+          VIDA.
+        </p>
+
+        <br />
+        <a
+          href="https://checkout.perfectpay.com.br/pay/PPU38CP2DEM"
+          class="cta-button"
+          target="_blank"
+          >Compre Agora</a
+        >
+      </div>
+    </section>
+
+    <section class="last-img-section"></section>
+
+    <section class="features" id="features">
+      <p>
+        Em apenas 14 dias, você pode dar o primeiro passo para deixar de jogar
+        de vez.<br />
+        Com desafios diários especialmente criados para te ajudar a parar de
+        jogar rapidamente, você vai retomar o controle da sua vida. <br />
+        Mais de 1000 pessoas já confiaram nesse método e se libertaram do vício
+        em jogos, e eu tenho certeza de que com você não será diferente.
+        <br /><br />
+        Agora, pare e pense: o que você tem a perder? <br /><br />Apenas vinte e
+        nove reais? Não deixe essa oportunidade passar.<br />
+        Essa pode ser a sua chance de recuperar o controle de vez e mudar sua
+        história para sempre.
+      </p>
+      <br /><br />
+      <a
+        href="https://checkout.perfectpay.com.br/pay/PPU38CP2DEM"
+        class="cta-button"
+        target="_blank"
+        >Compre Agora</a
+      >
+      <br /><br />
+    </section>
+
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-content">
+          <a
+            href="https://checkout.perfectpay.com.br/pay/PPU38CP2DEM"
+            class="hotmart-section"
+            target="_blank"
+          ></a>
+          <h3>Liberação imediata após o pagamento via Pix.</h3>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</html>
