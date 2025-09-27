@@ -1,0 +1,76 @@
+@import "../custom.scss";
+
+nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 70px;
+  color: $light;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px 20px;
+    margin-left: 20px;
+
+    img {
+      width: 60px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+    }
+  }
+
+  .logoLabel {
+    font-family: "Tektur", sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    font-style: italic;
+    letter-spacing: 2px;
+    color: white;
+    text-transform: none;
+  }
+
+  .menu {
+    display: flex;
+    gap: 40px;
+    margin-right: 20px;
+    font-family: "Michroma", sans-serif;
+    font-size: 20px;
+
+    a {
+      cursor: pointer;
+      position: relative;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: color 0.3 ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background: $secondary;
+        box-shadow: 0 0 8px $secondary;
+        transition: width 0.3s ease-in-out;
+      }
+
+      &:hover {
+        color: $secondary;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
