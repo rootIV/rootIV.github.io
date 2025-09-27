@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { login } from "../services/AuthService";
 import TextTyper from "../components/textTyper";
 import "../styles/login.scss";
@@ -11,16 +12,17 @@ export default function LoginElement({ setIsLoggedIn }: LoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, SetError] = useState("");
+  const { setToken } = useAuth();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
 
     try {
-      const data = await login(username, password);
-      alert("Login bem-sucedido! Usuário: " + data.username);
+      const token = await login(username, password);
+      setToken(token);
       setIsLoggedIn(true);
     } catch (err: any) {
-      SetError("Falha ao conectar");
+      SetError("Erro: " + err);
     }
   }
 

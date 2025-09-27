@@ -4,6 +4,7 @@ import NavElement from "./components/nav";
 import LoginElement from "./pages/login";
 import PriceElement from "./pages/price";
 import RegisterElement from "./pages/register";
+import StatusElement from "./pages/status"
 import HeroLayout from "./components/herolayout";
 import "./styles/App.scss";
 
@@ -27,6 +28,10 @@ function App() {
           )}
           {!isLoggedIn && page === "register" && (
             <RegisterElement setIsLoggedIn={setIsLoggedIn} />
+          )}
+          {
+            isLoggedIn && page === "status" && (
+              <StatusElement/>
           )}
         </HeroLayout>
       </main>

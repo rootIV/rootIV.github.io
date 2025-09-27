@@ -24,6 +24,14 @@ export default function NavElement({isLoggedIn, setPage}: NavProps) {
               </>
             )
           }
+          {
+            isLoggedIn && (
+              <>
+                <a onClick={() => setPage("status")}>Status</a>
+                <a onClick={() => setPage("leave")}>Sair</a>
+              </>
+            )
+          }
         </div>
       </nav>
     </>
