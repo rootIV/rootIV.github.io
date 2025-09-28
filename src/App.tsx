@@ -19,12 +19,6 @@ export default function App() {
     }
   }, []);
 
-  const handleLogin = (token: string) => {
-    localStorage.setItem("authToken", token);
-    setIsLoggedIn(true);
-    setPage("status");
-  };
-
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     setIsLoggedIn(false);
@@ -34,7 +28,7 @@ export default function App() {
   return (
     <>
       <header>
-        <NavElement isLoggedIn={isLoggedIn} setPage={setPage} onLoggout={handleLogout}/>
+        <NavElement isLoggedIn={isLoggedIn} setPage={setPage} onLogout={handleLogout}/>
       </header>
       <main>
         <HeroLayout>
@@ -45,14 +39,11 @@ export default function App() {
           )}
 
           {!isLoggedIn && page === "login" && (
-            <LoginElement
-              setIsLoggedIn={() => handleLogin("meuTokenFake")} // 🔹 use o token real aqui
-              setPage={setPage}
-            />
+            <LoginElement setIsLoggedIn={setIsLoggedIn} setPage={setPage} />
           )}
 
           {!isLoggedIn && page === "register" && (
-            <RegisterElement setIsLoggedIn={() => handleLogin("meuTokenFake")} />
+            <RegisterElement setIsLoggedIn={setIsLoggedIn} />
           )}
 
           {isLoggedIn && page === "status" && <StatusElement />}

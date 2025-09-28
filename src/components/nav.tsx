@@ -3,10 +3,10 @@ import "../styles/components/nav.scss"
 interface NavProps{
   isLoggedIn: boolean,
   setPage: (page: string) => void;
-  onLoggout: () => void;
+  onLogout: () => void;
 }
 
-export default function NavElement({isLoggedIn, setPage, onLoggout}: NavProps) {
+export default function NavElement({isLoggedIn, setPage, onLogout: onLogout}: NavProps) {
   return (
     <>
       <nav>
@@ -29,7 +29,7 @@ export default function NavElement({isLoggedIn, setPage, onLoggout}: NavProps) {
             isLoggedIn && (
               <>
                 <a onClick={() => setPage("status")}>Status</a>
-                <a onClick={onLoggout}>Sair</a>
+                <a onClick={onLogout}>Sair</a>
               </>
             )
           }
