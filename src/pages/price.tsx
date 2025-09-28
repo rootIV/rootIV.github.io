@@ -1,7 +1,11 @@
 import "../styles/price.scss";
 import { FaStar, FaTrophy, FaMedal } from "react-icons/fa";
 
-export default function PriceElement() {
+interface PriceProps {
+  setPage: (page: string) => void;
+}
+
+export default function PriceElement({ setPage }: PriceProps) {
   const plans = [
     {
       name: "1 Mês",
@@ -36,6 +40,10 @@ export default function PriceElement() {
     },
   ];
 
+  function handleSubscribe(planName: string) {
+    setPage("status");
+  }
+
   return (
     <div className="price-container">
       <h1>Nossos Planos</h1>
@@ -67,7 +75,7 @@ export default function PriceElement() {
                 </li>
               ))}
             </ul>
-            <button>Assinar</button>
+            <button onClick={() => handleSubscribe(plan.name)}>Assinar</button>
           </div>
         ))}
       </div>

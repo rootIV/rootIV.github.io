@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { register } from "../services/AuthService";
-import RegisterConfirmElement from "../pages/registerConfirm";
+import RegisterConfirmElement from "./registerConfirm";
 import TextTyper from "../components/textTyper";
 import "../styles/register.scss";
 

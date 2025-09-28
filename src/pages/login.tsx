@@ -6,9 +6,10 @@ import "../styles/login.scss";
 
 interface LoginProps {
   setIsLoggedIn: (value: boolean) => void;
+  setPage: (value: string) => void;
 }
 
-export default function LoginElement({ setIsLoggedIn }: LoginProps) {
+export default function LoginElement({ setIsLoggedIn, setPage }: LoginProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, SetError] = useState("");
@@ -21,6 +22,7 @@ export default function LoginElement({ setIsLoggedIn }: LoginProps) {
       const token = await login(username, password);
       setToken(token);
       setIsLoggedIn(true);
+      setPage("status");
     } catch (err: any) {
       SetError("Erro: " + err);
     }

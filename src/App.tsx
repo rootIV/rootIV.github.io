@@ -21,10 +21,10 @@ function App() {
         <HeroLayout>
           {page === "home" && <HeroElement />}
 
-          {page === "prices" && <PriceElement />}
+          {page === "prices" && <PriceElement setPage={setPage} />}
 
           {!isLoggedIn && page === "login" && (
-            <LoginElement setIsLoggedIn={setIsLoggedIn} />
+            <LoginElement setIsLoggedIn={setIsLoggedIn} setPage={setPage} />
           )}
           {!isLoggedIn && page === "register" && (
             <RegisterElement setIsLoggedIn={setIsLoggedIn} />
