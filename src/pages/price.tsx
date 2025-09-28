@@ -2,10 +2,11 @@ import "../styles/price.scss";
 import { FaStar, FaTrophy, FaMedal } from "react-icons/fa";
 
 interface PriceProps {
+  isLogged: boolean;
   setPage: (page: string) => void;
 }
 
-export default function PriceElement({ setPage }: PriceProps) {
+export default function PriceElement({ setPage, isLogged }: PriceProps) {
   const plans = [
     {
       name: "1 Mês",
@@ -40,8 +41,12 @@ export default function PriceElement({ setPage }: PriceProps) {
     },
   ];
 
-  function handleSubscribe(planName: string) {
-    setPage("status");
+  function handleSubscribe() {
+    if (isLogged) {
+      setPage("status");
+    } else {
+      setPage("login");
+    }
   }
 
   return (
@@ -75,7 +80,7 @@ export default function PriceElement({ setPage }: PriceProps) {
                 </li>
               ))}
             </ul>
-            <button onClick={() => handleSubscribe(plan.name)}>Assinar</button>
+            <button onClick={() => handleSubscribe()}>Assinar</button>
           </div>
         ))}
       </div>

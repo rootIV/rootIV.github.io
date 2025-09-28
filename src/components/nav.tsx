@@ -3,14 +3,15 @@ import "../styles/components/nav.scss"
 interface NavProps{
   isLoggedIn: boolean,
   setPage: (page: string) => void;
+  onLoggout: () => void;
 }
 
-export default function NavElement({isLoggedIn, setPage}: NavProps) {
+export default function NavElement({isLoggedIn, setPage, onLoggout}: NavProps) {
   return (
     <>
       <nav>
         <div className="logo">
-          <span className="logoLabel">Betomation</span>
+          <span className="logoLabel">Beetomation</span>
         </div>
         <div className="menu">
           <a onClick={() => setPage("home")}>Início</a>
@@ -28,7 +29,7 @@ export default function NavElement({isLoggedIn, setPage}: NavProps) {
             isLoggedIn && (
               <>
                 <a onClick={() => setPage("status")}>Status</a>
-                <a onClick={() => setPage("leave")}>Sair</a>
+                <a onClick={onLoggout}>Sair</a>
               </>
             )
           }

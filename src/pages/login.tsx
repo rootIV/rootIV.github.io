@@ -23,8 +23,9 @@ export default function LoginElement({ setIsLoggedIn, setPage }: LoginProps) {
       setToken(token);
       setIsLoggedIn(true);
       setPage("status");
+      localStorage.setItem("authToken", token);
     } catch (err: any) {
-      SetError("Erro: " + err);
+      SetError(`${err}`);
     }
   }
 
