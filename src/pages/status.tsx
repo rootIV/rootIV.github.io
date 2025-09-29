@@ -104,6 +104,12 @@ export default function StatusElement() {
                 : "Escolha um plano"}
             </h3>
             <div className="plan-options">
+              <button onClick={() => handlePlanSelection("1 dia")}>
+                1 dia
+              </button>
+              <button onClick={() => handlePlanSelection("1 semana")}>
+                1 semana
+              </button>
               <button onClick={() => handlePlanSelection("1 mês")}>
                 1 mês
               </button>

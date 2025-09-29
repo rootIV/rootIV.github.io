@@ -1,44 +1,46 @@
 @import "./custom.scss";
 
 .status-container {
+  margin-top: 170px;
   display: flex;
-  gap: 10rem;
+  gap: 2rem;
   padding: 2rem;
   color: #fff;
   font-family: "Google Sans Code", monospace;
+  flex-wrap: wrap;
+  justify-content: center;
 
-  .status-left {
-    flex: 1;
+  .status-left,
+  .status-right {
     border-radius: 12px;
     padding: 1.5rem;
-    text-align: center;
-    min-width: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px) saturate(100%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+  }
+
+  .status-left {
+    flex: 1;
+    min-width: 300px;
+    gap: 1rem;
 
     .plan-options {
       display: flex;
-      gap: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
       justify-content: center;
-      margin-top: 1rem;
 
       button {
         padding: 0.8rem 1.5rem;
         border: none;
         border-radius: 8px;
         background: $secondary;
-        color: #ffffff;
+        color: #fff;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.2s;
@@ -50,13 +52,24 @@
     }
 
     .qrcode-box {
+      display: flex;
+      justify-content: center;
       margin-bottom: 1rem;
+
+      img {
+        max-width: 250px;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      }
     }
 
     .pix-info {
       display: flex;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
 
       strong {
         color: $secondary;
@@ -64,14 +77,9 @@
 
       textarea {
         width: 100%;
+        max-width: 500px;
         min-height: 90px;
         max-height: 110px;
-        min-width: 500px;
-        max-width: 500px;
-        resize: vertical;
-        overflow-wrap: break-word;
-        word-break: break-all;
-        margin-top: 0.5rem;
         border-radius: 8px;
         padding: 0.5rem;
         font-size: 0.9rem;
@@ -79,23 +87,15 @@
         color: #fff;
         border: 1px solid rgba(255, 255, 255, 0.2);
         resize: none;
+        overflow-wrap: break-word;
+        word-break: break-all;
       }
     }
   }
 
   .status-right {
     flex: 1;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px) saturate(100%);
-    -webkit-backdrop-filter: blur(10px) saturate(180%);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    padding: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 400px;
+    min-width: 250px;
 
     ul {
       list-style: none;
@@ -115,17 +115,135 @@
       }
     }
   }
+}
 
-  .qrcode-box {
-    margin-bottom: 1rem;
+@media (min-width: 1201px) {
+  .status-container {
+    flex-direction: row;
+    gap: 2rem;
 
-    img {
-      max-width: 250px;
-      max-height: 250px;
+    .status-left {
+      flex: 1;
+
+      .plan-options {
+        display: flex;
+        gap: 1rem;
+
+        button {
+          flex: 1;
+          min-height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .status-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      ul {
+        padding: 0;
+        list-style: none;
+
+        li {
+          margin-bottom: 1rem;
+          font-size: 1rem;
+
+          strong {
+            color: $secondary;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .status-container {
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .status-left,
+    .status-right {
+      width: 90%;
+      text-align: center;
+    }
+
+    .status-left .plan-options {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      button {
+        width: 100%;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        padding: 0.6rem;
+      }
+    }
+
+    .status-left .pix-info textarea {
       width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      max-width: 100%;
+    }
+
+    .status-left .qrcode-box img {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .status-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+
+    .status-left,
+    .status-right {
+      width: 100%;
+      max-width: 400px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .status-left .plan-options {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      button {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0.6rem;
+      }
+    }
+
+    .status-left .qrcode-box img {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+
+    .status-left .pix-info textarea {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .status-right ul li {
+      font-size: 0.9rem;
+      text-align: center;
     }
   }
 }
