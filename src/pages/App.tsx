@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import HeroElement from "./components/hero";
-import NavElement from "./components/nav";
-import LoginElement from "./pages/login";
-import PriceElement from "./pages/price";
-import RegisterElement from "./pages/register";
-import StatusElement from "./pages/status";
-import HeroLayout from "./components/herolayout";
-import "./styles/App.scss";
+import HeroElement from "../components/hero";
+import NavElement from "../components/nav";
+import LoginElement from "./login";
+import PriceElement from "./price";
+import RegisterElement from "./register";
+import StatusElement from "./status";
+import HeroLayout from "../components/herolayout";
+import "../styles/App.scss";
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
