@@ -11,6 +11,7 @@ import "../styles/App.scss";
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [page, setPage] = useState("home");
+  const [userEmail, setUserEmail] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -39,14 +40,14 @@ export default function App() {
           )}
 
           {!isLoggedIn && page === "login" && (
-            <LoginElement setIsLoggedIn={setIsLoggedIn} setPage={setPage} />
+            <LoginElement setIsLoggedIn={setIsLoggedIn} setPage={setPage} setUserEmail={setUserEmail} />
           )}
 
           {!isLoggedIn && page === "register" && (
             <RegisterElement setIsLoggedIn={setIsLoggedIn} />
           )}
 
-          {isLoggedIn && page === "status" && <StatusElement />}
+          {isLoggedIn && page === "status" && <StatusElement email={userEmail}/>}
         </HeroLayout>
       </main>
     </>

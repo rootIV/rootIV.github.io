@@ -23,13 +23,32 @@ interface PixResponse {
   };
 }
 
-export default function StatusElement() {
+interface StatusElementProps {
+  email: string;
+}
+
+export default function StatusElement({ email }: StatusElementProps) {
   const { token } = useAuth();
   const [status, setStatus] = useState<StatusData | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [pixData, setPixData] = useState<PixResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const planMap: Record<string, string> = {
+    "1 dia": "1dia",
+    "1 semana": "1semana",
+    "1 mês": "1mes",
+    "3 meses": "3meses",
+    Vitalício: "vitalicio",
+  };
+
+  const planValueMap: Record<string, string> = {
+    "1 dia": "R$30,00",
+    "1 semana": "R$140,00",
+    "1 mês": "R$200,00",
+    "3 meses": "R$500,00",
+    Vitalício: "R$2000,00",
+  };
 
   useEffect(() => {
     if (!token) {
@@ -63,8 +82,18 @@ export default function StatusElement() {
     fetchStatus();
   }, [token]);
 
-  async function handlePlanSelection(plan: string) {
-    setSelectedPlan(plan);
+  async function handlePlanSelection(planId: string) {
+    if (!email) {
+      setError("Email não disponível");
+      return;
+    }
+
+    setSelectedPlan(planId);
+
+    const body = {
+      PlanId: planId,
+      Email: email,
+    };
 
     try {
       const res = await fetch(`https://localhost:7240/pix/create`, {
@@ -73,11 +102,7 @@ export default function StatusElement() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          amount: plan === "1 mês" ? 49.9 : plan === "3 meses" ? 129.9 : 399.9,
-          description: `Assinatura Betomation - ${plan}`,
-          email: "vitordevcontato@gmail.com",
-        }),
+        body: JSON.stringify(body),
       });
 
       if (!res.ok) throw new Error("Erro ao gerar Pix");
@@ -104,21 +129,14 @@ export default function StatusElement() {
                 : "Escolha um plano"}
             </h3>
             <div className="plan-options">
-              <button onClick={() => handlePlanSelection("1 dia")}>
-                1 dia
-              </button>
-              <button onClick={() => handlePlanSelection("1 semana")}>
-                1 semana
-              </button>
-              <button onClick={() => handlePlanSelection("1 mês")}>
-                1 mês
-              </button>
-              <button onClick={() => handlePlanSelection("3 meses")}>
-                3 meses
-              </button>
-              <button onClick={() => handlePlanSelection("1 ano")}>
-                1 ano
-              </button>
+              {Object.keys(planMap).map((label) => (
+                <button
+                  key={label}
+                  onClick={() => handlePlanSelection(planMap[label])}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
           </div>
         ) : (
@@ -132,18 +150,20 @@ export default function StatusElement() {
               </div>
               <div className="pix-info">
                 <p>
-                  <strong>Plano escolhido:</strong> {selectedPlan}
+                  <strong>Plano escolhido:</strong>{" "}
+                  {Object.keys(planMap).find(
+                    (key) => planMap[key] === selectedPlan
+                  )}
                 </p>
                 <p>
                   <strong>Valor:</strong>{" "}
-                  {selectedPlan === "1 mês"
-                    ? "R$ 49,90"
-                    : selectedPlan === "3 meses"
-                    ? "R$ 129,90"
-                    : "R$ 399,90"}
-                </p>
-                <p>
-                  <strong>Pix copia e cola:</strong>
+                  {
+                    planValueMap[
+                      Object.keys(planMap).find(
+                        (key) => planMap[key] === selectedPlan
+                      ) || ""
+                    ]
+                  }
                 </p>
                 <textarea
                   readOnly

@@ -7,10 +7,11 @@ import "../styles/login.scss";
 interface LoginProps {
   setIsLoggedIn: (value: boolean) => void;
   setPage: (value: string) => void;
+  setUserEmail: (email: string) => void;
 }
 
-export default function LoginElement({ setIsLoggedIn, setPage }: LoginProps) {
-  const [username, setUsername] = useState("");
+export default function LoginElement({ setIsLoggedIn, setPage, setUserEmail }: LoginProps) {
+  const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, SetError] = useState("");
   const { setToken } = useAuth();
@@ -19,8 +20,9 @@ export default function LoginElement({ setIsLoggedIn, setPage }: LoginProps) {
     e.preventDefault();
 
     try {
-      const token = await login(username, password);
+      const token = await login(email, password);
       setToken(token);
+      setUserEmail(email);
       setIsLoggedIn(true);
       setPage("status");
       localStorage.setItem("authToken", token);
@@ -36,7 +38,7 @@ export default function LoginElement({ setIsLoggedIn, setPage }: LoginProps) {
         <input
           type="text"
           placeholder="E-mail"
-          value={username}
+          value={email}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
