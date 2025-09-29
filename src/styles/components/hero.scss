@@ -2,9 +2,10 @@
 
 .main{
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
   h1{
     font-family: "Michroma", sans-serif;
@@ -17,20 +18,24 @@
 
 .hero {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 70px);
+  justify-content: center; // centraliza horizontal
+  align-items: center;     // centraliza vertical
+  flex-direction: column;
+  min-height: 100vh;
   background: linear-gradient(135deg, $primary, darken($primary, 20%));
   color: $light;
+  position: relative;
+  padding-top: 70px; // altura do nav desktop
+  padding-bottom: 20px;
 
   .hero-content {
-    position: relative;
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    width: 100%;
+    max-width: 800px;
   }
 
   &::before {
@@ -113,5 +118,18 @@
   }
   to {
     background-position: 10000px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 60px; // nav menor
+  }
+}
+
+@media (max-width: 540px) {
+  .hero {
+    padding-top: 120px; // nav em coluna + maior altura
+    text-align: center;
   }
 }
