@@ -1,9 +1,14 @@
 @import "./custom.scss";
 
 .price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 4rem 2rem;
-  font-family: 'Poppins', sans-serif;
+  padding-top: 170px;
+  font-family: "Poppins", sans-serif;
   color: #ffffff;
 
   h1 {
@@ -41,21 +46,21 @@
 
     @keyframes cardGlow {
       from {
-        box-shadow: 0 0 10px rgba(var(--glow-color), 0.4), 0 0 20px rgba(var(--glow-color), 0.3);
+        box-shadow: 0 0 10px rgba(var(--glow-color), 0.4),
+          0 0 20px rgba(var(--glow-color), 0.3);
       }
       to {
-        box-shadow: 0 0 20px rgba(var(--glow-color), 0.6), 0 0 35px rgba(var(--glow-color), 0.4);
+        box-shadow: 0 0 20px rgba(var(--glow-color), 0.6),
+          0 0 35px rgba(var(--glow-color), 0.4);
       }
     }
 
     h2 {
       margin-bottom: 1rem;
-      font-size: 1.8rem;
       color: $secondary;
     }
 
     .price {
-      font-size: 2.2rem;
       font-weight: 700;
       color: $secondary;
       margin-bottom: 0.5rem;
@@ -76,7 +81,7 @@
     ul {
       list-style: none;
       padding: 0;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
 
       li {
         margin: 0.6rem 0;
@@ -120,9 +125,83 @@
     }
   }
 
-  /* Card do meio destacado */
-  .cards .card:nth-child(2) {
-    transform: translateY(-15px);
-    border: 2px solid $secondary;
+}
+
+@media (max-width: 425px) {
+  .badge {
+    transform: translate(175%);
+  }
+
+  .price-container {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .card {
+      max-width: 230px;
+      max-height: auto;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .price-container {
+    .card {
+      min-width: 400px;
+      min-height: 300px;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 2rem;
+      }
+
+      ul{
+        li{
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 2560px) {
+  .price-container {
+    .cards {
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 3rem;
+    }
+
+    .card {
+      min-width: 400px;
+      min-height: 600px;
+      // max-width: 100px;
+      padding: 3rem;
+
+      h2{
+        font-size: 2.5rem;
+      }
+
+      p{
+        font-size: 3.5rem;
+      }
+
+      button{
+        padding: 1rem 5rem;
+        font-weight: 600;
+        font-size: 2rem;
+      }
+    }
   }
 }

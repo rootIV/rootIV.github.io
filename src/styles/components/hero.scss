@@ -18,14 +18,14 @@
 
 .hero {
   display: flex;
-  justify-content: center; // centraliza horizontal
-  align-items: center;     // centraliza vertical
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   min-height: 100vh;
   background: linear-gradient(135deg, $primary, darken($primary, 20%));
   color: $light;
   position: relative;
-  padding-top: 70px; // altura do nav desktop
+  padding-top: 70px;
   padding-bottom: 20px;
 
   .hero-content {
@@ -121,15 +121,8 @@
   }
 }
 
-@media (max-width: 768px) {
-  .hero {
-    padding-top: 60px; // nav menor
-  }
-}
-
-@media (max-width: 540px) {
-  .hero {
-    padding-top: 120px; // nav em coluna + maior altura
-    text-align: center;
-  }
+@media (max-width: 425px) {
+  p{
+    font-size: 0.7rem;
+  }  
 }

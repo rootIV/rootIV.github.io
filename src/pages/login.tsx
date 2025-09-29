@@ -35,7 +35,7 @@ export default function LoginElement({ setIsLoggedIn, setPage }: LoginProps) {
       <form onSubmit={handleLogin}>
         <input
           type="text"
-          placeholder="Usuário"
+          placeholder="E-mail"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />

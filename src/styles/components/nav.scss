@@ -4,30 +4,18 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;    
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
+  width: 100%;
   height: 70px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 40px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
   color: $light;
-  border: none;
-  background-color: rgba(0, 0, 0, 0.3);
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px 20px;
-    margin-left: 20px;
-
-    img {
-      width: 60px;
-      height: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
-    }
-  }
+  z-index: 100;
 
   .logoLabel {
     font-family: "Tektur", sans-serif;
@@ -39,12 +27,19 @@ nav {
     text-transform: none;
   }
 
+  .menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
   .menu {
     display: flex;
-    gap: 40px;
-    margin-right: 20px;
     font-family: "Michroma", sans-serif;
-    font-size: 20px;
+    font-size: 15px;
 
     a {
       cursor: pointer;
@@ -78,61 +73,29 @@ nav {
   }
 }
 
-@media (max-width: 768px) {
-  nav {
-    padding: 0 20px;
-    height: 60px;
-
-    .logo {
-      margin-left: 0;
-
-      img {
-        width: 45px;
-      }
-    }
-
-    .logoLabel {
-      font-size: 1.4rem;
-    }
-
-    .menu {
-      gap: 20px;
-      font-size: 16px;
-      margin-right: 0;
-    }
+@media (max-width: 2560px) {
+  .menu {
+    gap: 40px;
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 760px) {
   nav {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     height: auto;
-    padding: 10px 20px;
+    padding: 20px 0;
+  }
 
-    .logo {
-      margin: 0 0 10px 0;
+  .logo {
+    padding-bottom: 10px;
+  }
 
-      img {
-        width: 40px;
-      }
-    }
-
-    .logoLabel {
-      font-size: 1.2rem;
-    }
-
-    .menu {
-      flex-direction: column;
-      width: 100%;
-      gap: 12px;
-      font-size: 14px;
-
-      a {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-      }
-    }
+  .menu {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
   }
 }

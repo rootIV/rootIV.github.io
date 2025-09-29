@@ -9,34 +9,64 @@ interface PriceProps {
 export default function PriceElement({ setPage, isLogged }: PriceProps) {
   const plans = [
     {
+      name: "1 Dia",
+      price: 30,
+      displayPrice: "R$30,00",
+      features: [],
+      badge: { label: "1º", icon: <FaMedal /> },
+      savings: null,
+      glowColor: "200, 202, 255", // azul meio branco
+    },
+    {
+      name: "1 Semana",
+      price: 30,
+      displayPrice: "R$140,00",
+      features: [
+        "Suporte via email"
+      ],
+      badge: { label: "2º", icon: <FaMedal /> },
+      savings: null,
+      glowColor: "100, 132, 255", // azul
+    },
+    {
       name: "1 Mês",
       price: 200,
       displayPrice: "R$200,00",
-      features: ["Acesso completo", "Suporte via email"],
-      badge: { label: "2º", icon: <FaMedal /> },
+      features: [
+        "Acesso completo", 
+        "Suporte via telegram", 
+        "Saque bônus automático"
+      ],
+      badge: { label: "3º", icon: <FaMedal /> },
       savings: null,
-      glowColor: "0, 132, 255", // dourado
+      glowColor: "250, 132, 255", // roxo
     },
     {
       name: "3 Meses",
       price: 500,
       displayPrice: "R$500,00",
-      features: ["Acesso completo", "Suporte via email", "Desconto adicional"],
-      badge: { label: "1º", icon: <FaTrophy /> },
+      features: [
+        "Acesso completo", 
+        "Suporte via telegram", 
+        "Saque bônus automático", 
+        "Desconto adicional"
+      ],
+      badge: { label: "4º", icon: <FaTrophy /> },
       savings: { amount: 100 },
-      glowColor: "255, 200, 0", // azul
+      glowColor: "255, 200, 0", // dourado
     },
     {
-      name: "1 Ano",
-      price: 1800,
-      displayPrice: "R$1800,00",
+      name: "Vitalício",
+      price: 2000,
+      displayPrice: "R$2000,00",
       features: [
         "Acesso completo",
-        "Suporte prioritário",
+        "Suporte prioritário", 
+        "Saque bônus automático",
         "Desconto exclusivo",
       ],
-      badge: { label: "3º", icon: <FaStar /> },
-      savings: { amount: 600 },
+      badge: { label: "5º", icon: <FaStar /> },
+      savings: { amount: 400 },
       glowColor: "0, 255, 132", // verde
     },
   ];
