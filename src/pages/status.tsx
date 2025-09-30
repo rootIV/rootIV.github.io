@@ -61,7 +61,7 @@ export default function StatusElement({ email }: StatusElementProps) {
       setError(null);
 
       try {
-        const res = await fetch(`https://localhost:7240/serialkey/status`, {
+        const res = await fetch(`http://api.beetomation.shop:5227/serialkey/status`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -96,7 +96,7 @@ export default function StatusElement({ email }: StatusElementProps) {
     };
 
     try {
-      const res = await fetch(`https://localhost:7240/pix/create`, {
+      const res = await fetch(`http://api.beetomation.shop:5227/pix/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

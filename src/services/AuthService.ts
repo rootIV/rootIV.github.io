@@ -1,4 +1,4 @@
-const API_URL = "https://localhost:7240/user";
+const API_URL = "http://api.beetomation.shop:5227/user";
 
 export async function login(username: string, password: string) {
   const response = await fetch(`${API_URL}/login`, {
