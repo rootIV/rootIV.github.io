@@ -34,6 +34,8 @@ export default function StatusElement({ email }: StatusElementProps) {
   const [loading, setLoading] = useState(true);
   const [pixData, setPixData] = useState<PixResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [timer, setTimer] = useState(5 * 60); // contador de 5 minutos
+
   const planMap: Record<string, string> = {
     "1 dia": "1dia",
     "1 semana": "1semana",
@@ -51,6 +53,30 @@ export default function StatusElement({ email }: StatusElementProps) {
   };
 
   useEffect(() => {
+    if (!pixData) return;
+    if (timer <= 0) {
+      setPixData(null);
+      setSelectedPlan(null);
+      setTimer(5 * 60);
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setTimer((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [pixData, timer]);
+
+  const formatTime = (seconds: number) => {
+    const min = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    return `${min.toString().padStart(2, "0")}:${sec
+      .toString()
+      .padStart(2, "0")}`;
+  };
+
+  useEffect(() => {
     if (!token) {
       setLoading(false);
       return;
@@ -61,12 +87,15 @@ export default function StatusElement({ email }: StatusElementProps) {
       setError(null);
 
       try {
-        const res = await fetch(`http://api.beetomation.shop:5227/serialkey/status`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await fetch(
+          `https://api.beetomation.shop/serialkey/status`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!res.ok) throw new Error("Erro ao buscar status");
         const data: StatusData = await res.json();
@@ -89,6 +118,7 @@ export default function StatusElement({ email }: StatusElementProps) {
     }
 
     setSelectedPlan(planId);
+    setTimer(5 * 60);
 
     const body = {
       PlanId: planId,
@@ -96,7 +126,7 @@ export default function StatusElement({ email }: StatusElementProps) {
     };
 
     try {
-      const res = await fetch(`http://api.beetomation.shop:5227/pix/create`, {
+      const res = await fetch(`https://api.beetomation.shop/pix/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -164,6 +194,9 @@ export default function StatusElement({ email }: StatusElementProps) {
                       ) || ""
                     ]
                   }
+                </p>
+                <p>
+                  <strong>Tempo restante:</strong> {formatTime(timer)}
                 </p>
                 <textarea
                   readOnly
