@@ -3,28 +3,29 @@ import HeroElement from "../components/hero";
 import NavElement from "../components/nav";
 import LoginElement from "./login";
 import PriceElement from "./price";
-import RegisterElement from "./register";
+// import RegisterElement from "./register";
 import StatusElement from "./status";
 import HeroLayout from "../components/herolayout";
 import "../styles/App.scss";
+import { useAuth } from "../context/AuthContext";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { token, email, logout } = useAuth();
   const [page, setPage] = useState("home");
-  const [userEmail, setUserEmail] = useState("");
 
-  useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  const isLoggedIn = !!token;
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    setIsLoggedIn(false);
+    logout();
     setPage("home");
   };
+
+  useEffect(() => {
+    if (isLoggedIn && (page === "login" || page === "register")) {
+      setPage("status");
+    }
+  }, [isLoggedIn, page]);
+
 
   return (
     <>
@@ -35,19 +36,13 @@ export default function App() {
         <HeroLayout>
           {page === "home" && <HeroElement />}
 
-          {page === "prices" && (
-            <PriceElement setPage={setPage} isLogged={isLoggedIn} />
-          )}
+          {page === "prices" && <PriceElement setPage={setPage} isLogged={isLoggedIn} />}
 
-          {!isLoggedIn && page === "login" && (
-            <LoginElement setIsLoggedIn={setIsLoggedIn} setPage={setPage} setUserEmail={setUserEmail} />
-          )}
+          {!isLoggedIn && page === "login" && <LoginElement setPage={setPage} />}
 
-          {!isLoggedIn && page === "register" && (
-            <RegisterElement setIsLoggedIn={setIsLoggedIn} />
-          )}
+          {/* {!isLoggedIn && page === "register" && <RegisterElement setIsLoggedIn={setPage} />} */}
 
-          {isLoggedIn && page === "status" && <StatusElement email={userEmail}/>}
+          {isLoggedIn && page === "status" && <StatusElement email={email ?? ""}/>}
         </HeroLayout>
       </main>
     </>

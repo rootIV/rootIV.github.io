@@ -1,33 +1,40 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import { login } from "../services/AuthService";
 import TextTyper from "../components/textTyper";
 import "../styles/login.scss";
 
 interface LoginProps {
-  setIsLoggedIn: (value: boolean) => void;
   setPage: (value: string) => void;
-  setUserEmail: (email: string) => void;
 }
 
-export default function LoginElement({ setIsLoggedIn, setPage, setUserEmail }: LoginProps) {
-  const [email, setUsername] = useState("");
+export default function LoginElement({ setPage }: LoginProps) {
+  const [emailInput, setEmailInput] = useState("");
   const [password, setPassword] = useState("");
-  const [error, SetError] = useState("");
-  const { setToken } = useAuth();
+  const [error, setError] = useState("");
+  const { login } = useAuth();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
 
     try {
-      const token = await login(email, password);
-      setToken(token);
-      setUserEmail(email);
-      setIsLoggedIn(true);
+      const token = await fetch("https://api.beetomation.shop/user/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ Username: emailInput, Password: password }),
+      }).then(async (res) => {
+        console.log("HTTP login status:", res.status);
+        if (!res.ok) throw new Error(await res.text());
+        const data = await res.json();
+        console.log("Token recebido:", data.token);
+        if (!data.token) throw new Error("Token não retornado");
+        return data.token;
+      });
+
+      login(token);
+
       setPage("status");
-      localStorage.setItem("authToken", token);
     } catch (err: any) {
-      SetError(`${err}`);
+      setError(err.message || "Erro desconhecido");
     }
   }
 
@@ -38,8 +45,8 @@ export default function LoginElement({ setIsLoggedIn, setPage, setUserEmail }: L
         <input
           type="text"
           placeholder="E-mail"
-          value={email}
-          onChange={(e) => setUsername(e.target.value)}
+          value={emailInput}
+          onChange={(e) => setEmailInput(e.target.value)}
         />
         <input
           type="password"

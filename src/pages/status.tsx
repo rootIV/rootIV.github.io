@@ -34,7 +34,7 @@ export default function StatusElement({ email }: StatusElementProps) {
   const [loading, setLoading] = useState(true);
   const [pixData, setPixData] = useState<PixResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [timer, setTimer] = useState(5 * 60); // contador de 5 minutos
+  const [timer, setTimer] = useState(5 * 60);
 
   const planMap: Record<string, string> = {
     "1 dia": "1dia",
@@ -87,6 +87,8 @@ export default function StatusElement({ email }: StatusElementProps) {
       setError(null);
 
       try {
+        console.log("Enviando token para /status:", token);
+
         const res = await fetch(
           `https://api.beetomation.shop/serialkey/status`,
           {
@@ -97,6 +99,7 @@ export default function StatusElement({ email }: StatusElementProps) {
           }
         );
 
+        console.log("Status HTTP:", res.status);
         if (!res.ok) throw new Error("Erro ao buscar status");
         const data: StatusData = await res.json();
         setStatus(data);
