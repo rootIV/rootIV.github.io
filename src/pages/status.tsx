@@ -12,14 +12,12 @@ interface StatusData {
 interface PixResponse {
   id: string;
   status: string;
-  transactions: {
-    payments: Array<{
-      payment_method: {
-        qr_code: string;
-        qr_code_base64: string;
-        ticket_url: string;
-      };
-    }>;
+  point_of_interaction: {
+    transaction_data: {
+      qr_code: string;
+      qr_code_base64: string;
+      ticket_url: string;
+    };
   };
 }
 
@@ -175,12 +173,16 @@ export default function StatusElement({ email }: StatusElementProps) {
         ) : (
           pixData && (
             <>
-              <div className="qrcode-box">
-                <img
-                  src={`data:image/png;base64,${pixData.transactions.payments[0].payment_method.qr_code_base64}`}
-                  alt="QR Code Pix"
-                />
-              </div>
+              {pixData?.point_of_interaction?.transaction_data
+                ?.qr_code_base64 && (
+                <div className="qrcode-box">
+                  <img
+                    src={`data:image/png;base64,${pixData.point_of_interaction.transaction_data.qr_code_base64}`}
+                    alt="QR Code Pix"
+                  />
+                </div>
+              )}
+
               <div className="pix-info">
                 <p>
                   <strong>Plano escolhido:</strong>{" "}
@@ -204,7 +206,8 @@ export default function StatusElement({ email }: StatusElementProps) {
                 <textarea
                   readOnly
                   value={
-                    pixData.transactions.payments[0].payment_method.qr_code
+                    pixData?.point_of_interaction?.transaction_data?.qr_code ||
+                    ""
                   }
                   onClick={(e) => (e.target as HTMLTextAreaElement).select()}
                 />
