@@ -40,16 +40,16 @@ export default function StatusElement({ email }: StatusElementProps) {
     "1 dia": "1dia",
     "1 semana": "1semana",
     "1 mês": "1mes",
-    "3 meses": "3meses",
+    "Saque de bônus": "withdbonus",
     Vitalício: "vitalicio",
   };
 
   const planValueMap: Record<string, string> = {
-    "1 dia": "R$30,00",
-    "1 semana": "R$140,00",
-    "1 mês": "R$200,00",
-    "3 meses": "R$500,00",
-    Vitalício: "R$2000,00",
+    "1 dia": "R$50,00",
+    "1 semana": "R$150,00",
+    "1 mês": "R$250,00",
+    "Saque de bônus": "R$300,00",
+    Vitalício: "R$2500,00",
   };
 
   useEffect(() => {

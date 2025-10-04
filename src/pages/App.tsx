@@ -3,7 +3,7 @@ import HeroElement from "../components/hero";
 import NavElement from "../components/nav";
 import LoginElement from "./login";
 import PriceElement from "./price";
-// import RegisterElement from "./register";
+import RegisterElement from "./register";
 import StatusElement from "./status";
 import HeroLayout from "../components/herolayout";
 import "../styles/App.scss";
@@ -36,11 +36,11 @@ export default function App() {
         <HeroLayout>
           {page === "home" && <HeroElement />}
 
-          {page === "prices" && <PriceElement setPage={setPage} isLogged={isLoggedIn} />}
+          {page === "prices" && <PriceElement setPage={setPage} isLogged={isLoggedIn}/>}
 
-          {!isLoggedIn && page === "login" && <LoginElement setPage={setPage} />}
+          {!isLoggedIn && page === "login" && <LoginElement setPage={setPage}/>}
 
-          {/* {!isLoggedIn && page === "register" && <RegisterElement setIsLoggedIn={setPage} />} */}
+          {!isLoggedIn && page === "register" && <RegisterElement/>}
 
           {isLoggedIn && page === "status" && <StatusElement email={email ?? ""}/>}
         </HeroLayout>

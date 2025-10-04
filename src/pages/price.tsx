@@ -9,66 +9,67 @@ interface PriceProps {
 export default function PriceElement({ setPage, isLogged }: PriceProps) {
   const plans = [
     {
-      name: "1 Dia",
-      price: 30,
-      displayPrice: "R$30,00",
-      features: [],
-      badge: { label: "1º", icon: <FaMedal /> },
-      savings: null,
-      glowColor: "200, 202, 255", // azul meio branco
-    },
-    {
-      name: "1 Semana",
-      price: 30,
-      displayPrice: "R$140,00",
-      features: [
-        "Suporte via email"
-      ],
-      badge: { label: "2º", icon: <FaMedal /> },
-      savings: null,
-      glowColor: "100, 132, 255", // azul
-    },
-    {
       name: "1 Mês",
-      price: 200,
-      displayPrice: "R$200,00",
+      price: 250,
+      displayPrice: "R$250,00",
       features: [
         "Acesso completo", 
-        "Suporte via telegram", 
-        "Saque bônus automático"
+        "Suporte via telegram"
       ],
-      badge: { label: "3º", icon: <FaMedal /> },
+      badge: { label: "1º", icon: <FaMedal /> },
       savings: null,
       glowColor: "250, 132, 255", // roxo
     },
     {
-      name: "3 Meses",
-      price: 500,
-      displayPrice: "R$500,00",
+      name: "Saque de bônus",
+      price: 300,
+      displayPrice: "R$300,00",
       features: [
-        "Acesso completo", 
-        "Suporte via telegram", 
-        "Saque bônus automático", 
-        "Desconto adicional"
+        "Saque de bônus automático", 
+        "Com Logs"
       ],
-      badge: { label: "4º", icon: <FaTrophy /> },
-      savings: { amount: 100 },
+      badge: { label: "2º", icon: <FaTrophy /> },
+      savings: null,
       glowColor: "255, 200, 0", // dourado
     },
     {
+      name: "1 Dia",
+      price: 50,
+      displayPrice: "R$50,00",
+      features: [
+        "Acesso completo", 
+        "Suporte via telegram"
+      ],
+      badge: { label: "3º", icon: <FaMedal /> },
+      savings: null,
+      glowColor: "200, 202, 255", // azul meio branco
+    },
+    {
       name: "Vitalício",
-      price: 2000,
-      displayPrice: "R$2000,00",
+      price: 2500,
+      displayPrice: "R$2500,00",
       features: [
         "Acesso completo",
         "Suporte prioritário", 
-        "Saque bônus automático",
-        "Desconto exclusivo",
+        "Suporte via telegram",
+        "Desconto exclusivo"
       ],
-      badge: { label: "5º", icon: <FaStar /> },
-      savings: { amount: 400 },
+      badge: { label: "4º", icon: <FaStar /> },
+      savings: { amount: 500 },
       glowColor: "0, 255, 132", // verde
     },
+    {
+      name: "1 Semana",
+      price: 150,
+      displayPrice: "R$150,00",
+      features: [
+        "Acesso completo",
+        "Suporte via telegram"
+      ],
+      badge: { label: "5º", icon: <FaMedal /> },
+      savings: null,
+      glowColor: "100, 132, 255", // azul
+    }
   ];
 
   function handleSubscribe() {

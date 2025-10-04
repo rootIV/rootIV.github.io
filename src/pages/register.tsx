@@ -4,11 +4,7 @@ import RegisterConfirmElement from "./registerConfirm";
 import TextTyper from "../components/textTyper";
 import "../styles/register.scss";
 
-interface RegisterProps {
-  setIsLoggedIn: (value: boolean) => void;
-}
-
-export default function RegisterElement({ setIsLoggedIn }: RegisterProps) {
+export default function RegisterElement() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
@@ -49,7 +45,6 @@ export default function RegisterElement({ setIsLoggedIn }: RegisterProps) {
     try {
       await register(username, password);
       setIsRegistered(true);
-      setIsLoggedIn(false);
     } catch (err: any) {
       setError("Falha ao conectar.");
     }
